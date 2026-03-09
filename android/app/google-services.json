@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "478180206756",
+    "project_id": "ai-product-compare",
+    "storage_bucket": "ai-product-compare.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478180206756:android:b2f9c6c2948718d664de31",
+        "android_client_info": {
+          "package_name": "com.emre.ai_product_compare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGVQlahHuaise975Y6UtWv7BjP35Q8uFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
