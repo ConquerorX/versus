@@ -52,7 +52,23 @@ if (-not (Test-Path $apkPath)) {
 
 $notes = ""
 if (Test-Path $NotesFile) {
-  $notes = Get-Content $NotesFile -Raw
+  $lines = Get-Content $NotesFile
+  $headerPattern = "^##\s*v?$version(\s|$)"
+  $match = $lines | Select-String -Pattern $headerPattern -List
+
+  if ($match) {
+    $startIndex = $match.LineNumber - 1
+    $notesLines = @()
+    for ($i = $startIndex + 1; $i -lt $lines.Count; $i++) {
+      if ($lines[$i] -match "^##\s+") { break }
+      $notesLines += $lines[$i]
+    }
+    $notes = ($notesLines -join "`n").Trim()
+  }
+
+  if (-not $notes) {
+    $notes = (Get-Content $NotesFile -Raw).Trim()
+  }
 } else {
   $notes = (git log -n 10 --pretty=format:"- %s") -join "`n"
 }
