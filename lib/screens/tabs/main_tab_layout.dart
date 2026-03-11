@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'home_screen.dart';
 
 class MainTabLayout extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
@@ -24,22 +23,22 @@ class MainTabLayout extends StatelessWidget {
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
+            selectedIcon: Icon(Icons.home_rounded),
             label: 'Ana Sayfa',
           ),
           NavigationDestination(
             icon: Icon(Icons.compare_arrows_outlined),
-            selectedIcon: Icon(Icons.compare_arrows),
-            label: 'Karsilastir',
+            selectedIcon: Icon(Icons.compare_arrows_rounded),
+            label: 'Karşılaştır',
           ),
           NavigationDestination(
             icon: Icon(Icons.history_outlined),
-            selectedIcon: Icon(Icons.history),
-            label: 'Gecmis',
+            selectedIcon: Icon(Icons.history_rounded),
+            label: 'Geçmiş',
           ),
           NavigationDestination(
-            icon: Icon(Icons.person_outline),
-            selectedIcon: Icon(Icons.person),
+            icon: Icon(Icons.person_outlined),
+            selectedIcon: Icon(Icons.person_rounded),
             label: 'Profil',
           ),
         ],

@@ -20,7 +20,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       // Eger baglanti bekleniyorsa yonlendirme (opsiyonel)
       if (authState.isLoading) return null;
 
-      final isAuth = authState.valueOrNull != null;
+      final isAuth = authState.value != null;
       final isLoggingIn =
           state.matchedLocation == '/login' ||
           state.matchedLocation == '/register';

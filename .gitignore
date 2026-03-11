@@ -33,6 +33,10 @@ migrate_working_dir/
 /build/
 /coverage/
 
+# Local diagnostics
+errors*.txt
+analyze_output.txt
+
 # Symbolication related
 app.*.symbols
 
