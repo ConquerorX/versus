@@ -13,7 +13,10 @@ class UpdateService {
   Future<void> checkForUpdate(BuildContext context) async {
     try {
       final packageInfo = await PackageInfo.fromPlatform();
-      final currentVersion = packageInfo.version.replaceAll('v', '');
+      final buildNumber = packageInfo.buildNumber;
+      final currentVersion = buildNumber.isNotEmpty
+          ? '${packageInfo.version}+$buildNumber'
+          : packageInfo.version;
 
       final url = Uri.parse('https://api.github.com/repos/$githubUsername/$repoName/releases/latest');
       final response = await http.get(url);
@@ -53,18 +56,37 @@ class UpdateService {
 
   bool _isNewerVersion(String current, String latest) {
     try {
-      List<int> currentParts = current.split('.').map((s) => int.tryParse(s) ?? 0).toList();
-      List<int> latestParts = latest.split('.').map((s) => int.tryParse(s) ?? 0).toList();
+      final currentInfo = _parseVersion(current);
+      final latestInfo = _parseVersion(latest);
 
-      for (int i = 0; i < latestParts.length; i++) {
-        int currentPart = i < currentParts.length ? currentParts[i] : 0;
-        if (latestParts[i] > currentPart) return true;
-        if (latestParts[i] < currentPart) return false;
+      if (latestInfo.major != currentInfo.major) {
+        return latestInfo.major > currentInfo.major;
       }
+      if (latestInfo.minor != currentInfo.minor) {
+        return latestInfo.minor > currentInfo.minor;
+      }
+      if (latestInfo.patch != currentInfo.patch) {
+        return latestInfo.patch > currentInfo.patch;
+      }
+      return latestInfo.build > currentInfo.build;
     } catch (e) {
       return false;
     }
     return false;
+  }
+
+  _VersionInfo _parseVersion(String version) {
+    final cleaned = version.trim().replaceAll(RegExp(r'^[vV]'), '');
+    final parts = cleaned.split('+');
+    final main = parts.isNotEmpty ? parts[0] : '0.0.0';
+    final build = parts.length > 1 ? int.tryParse(parts[1]) ?? 0 : 0;
+
+    final mainParts = main.split('.');
+    final major = mainParts.length > 0 ? int.tryParse(mainParts[0]) ?? 0 : 0;
+    final minor = mainParts.length > 1 ? int.tryParse(mainParts[1]) ?? 0 : 0;
+    final patch = mainParts.length > 2 ? int.tryParse(mainParts[2]) ?? 0 : 0;
+
+    return _VersionInfo(major: major, minor: minor, patch: patch, build: build);
   }
 
   void _showUpdateDialog(
@@ -85,6 +107,20 @@ class UpdateService {
       },
     );
   }
+}
+
+class _VersionInfo {
+  final int major;
+  final int minor;
+  final int patch;
+  final int build;
+
+  const _VersionInfo({
+    required this.major,
+    required this.minor,
+    required this.patch,
+    required this.build,
+  });
 }
 
 class _UpdateDialog extends StatefulWidget {
