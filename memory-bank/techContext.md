@@ -17,6 +17,7 @@ Bu bölüm, uygulamanın teknik altyapısını, kullanılan teknolojileri ve gel
 2. **Paketler:** `flutter pub get` komutuyla bağımlılıklar yüklenir.
 3. **Emulator/Cihaz:** Android veya iOS emülatörü/cihazı bağlı olmalıdır.
 4. **Çalıştırma:** `flutter run` komutuyla uygulama başlatılır.
+5. **Release:** `update.ps1` ile lokal build + tag + GitHub Release oluşturulur.
 
 ## Teknik Kısıtlamalar ve Kararlar
 - **API Güvenliği:** Gemini API anahtarları doğrudan mobil uygulamaya gömülmez. Tüm istekler `https://ai-bot-proxy.e-duralemre.workers.dev` adresindeki proxy üzerinden geçer.
@@ -33,3 +34,5 @@ Bu bölüm, uygulamanın teknik altyapısını, kullanılan teknolojileri ve gel
 - `share_plus` (Sonuç paylaşma)
 - `image_picker` (Fotoğraf çekme/seçme)
 - `google_fonts` (Poppins yazı tipi)
+- `ota_update` (APK OTA indirme/kurulum)
+- `package_info_plus` (Sürüm ve build bilgisi)

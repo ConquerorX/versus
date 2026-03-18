@@ -28,6 +28,10 @@
 - [x] **Ana Sayfa ve Profil İyileştirmeleri:** Profil için dinamik Firestore istatistikleri ve degradeli estetik avatar; ana siteye rastgele karşılaştırma üreten 'Sürpriz İkilem' eklentisi ve Trendlerin önceliklendirilmesi.
 - [x] **Markalaşma (Branding):** Uygulama ismi UI ve manifest dosyalarında "V/S" olarak güncellendi. Android Adaptive Icon uyumu sağlamak üzere Flutter Launcher Icons eklendi, kullanıcının 1024x1024 boyutunda sağladığı yeni ana logo sorunsuz entegre edildi.
 - [x] **Dokümantasyon:** Hafıza Bankası (Memory Bank) kurulumu ve güncellemesi.
+- [x] **OTA Update Crash Fix:** `ota_update` provider sınıfı düzeltilerek startup çökmesi giderildi.
+- [x] **Sürüm Karşılaştırma:** Update kontrolü `version+build` formatını destekler hale getirildi.
+- [x] **Yerel Release Scripti:** `update.ps1` ile build + tag + GitHub Release otomasyonu sağlandı.
+- [x] **Changelog Yönetimi:** `CHANGELOG.md` eklendi ve `v1.0.0+2` release yayınlandı.
 
 ## Devam Edenler (In Progress)
 

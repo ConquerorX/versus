@@ -117,3 +117,19 @@
 - **Bağlam:** Kullanıcı aynı trend eşleşmesine farklı cihazlardan (emülatör ve telefon) bastığında, uygulamanın farklı puanlar ve içerikler verdiğini fark etti. Bunun sebebi her tıklanmada yapay zekaya baştan sorulmasıydı.
 - **Karar:** `home_screen.dart` ve `trends_screen.dart` sayfalarındaki `onTap` eylemi değiştirildi. Artık o trende basıldığında öncelikle Firestore'un `comparisons` koleksiyonuna bakılıyor ve **daha önce yapılmış bir karşılaştırma var mı** diye kontrol ediliyor. Eğer varsa (ki trendlerde her zaman vardır), O sonuç ekrana basılıyor. Yoksa AI yepyeni oluşturuyor.
 - **Sonuç:** Hangi cihazdan bakılırsa bakılsın, "A vs B" trendine tıklandığında herkes aynı ekranı (puanı, içeriği) görüyor. Tutarsızlık ve AI halüsinasyonu ortadan kaldırıldı. Eşitleme sağlandı.
+
+## [017] 2026-03-11 - OTA Update Provider Crash Düzeltmesi
+
+- **Tarih:** 2026-03-11
+- **Bağlam:** Uygulama açılır açılmaz `OtaUpdateFileProvider` sınıfı bulunamadığı için çöküyordu.
+- **Karar:** Android manifestte provider sınıfı `sk.fourq.otaupdate.OtaUpdateFileProvider` olarak güncellendi.
+- **Alternatifler:** OTA özelliğini tamamen kaldırmak (kabul edilmedi).
+- **Sonuç:** Startup crash giderildi, OTA güncelleme akışı çalışır hale geldi.
+
+## [018] 2026-03-11 - Yerel Release Scripti ve Changelog Tabanlı Yayın
+
+- **Tarih:** 2026-03-11
+- **Bağlam:** GitHub Actions build süreleri uzun sürdüğü için daha hızlı ve kontrol edilebilir bir yayın akışı gerekiyordu.
+- **Karar:** `update.ps1` ile lokal release APK build + tag + GitHub Release otomasyonu oluşturuldu. Release notları `CHANGELOG.md` üzerinden gönderilecek.
+- **Alternatifler:** Sadece GitHub Actions ile otomatik release (daha yavaş).
+- **Sonuç:** Tek komutla release hazırlanıp GitHub Releases’a yüklenebiliyor, changelog uygulamada güncelleme penceresinde görünüyor.
