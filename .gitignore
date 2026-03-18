@@ -37,6 +37,9 @@ migrate_working_dir/
 errors*.txt
 analyze_output.txt
 
+# Local AI working files
+/memory-bank/
+
 # Symbolication related
 app.*.symbols
 
